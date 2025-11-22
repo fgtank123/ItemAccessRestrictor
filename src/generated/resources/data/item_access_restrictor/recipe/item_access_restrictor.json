@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "a": {
+      "item": "minecraft:copper_ingot"
+    },
+    "b": {
+      "item": "minecraft:glass"
+    },
+    "c": {
+      "item": "minecraft:quartz"
+    },
+    "d": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "bab",
+    "aca",
+    "dad"
+  ],
+  "result": {
+    "count": 1,
+    "id": "item_access_restrictor:item_access_restrictor"
+  }
+}

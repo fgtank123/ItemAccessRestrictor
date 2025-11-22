@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "blocking=false,facing=down": {
+      "model": "item_access_restrictor:block/item_access_restrictor"
+    },
+    "blocking=false,facing=east": {
+      "model": "item_access_restrictor:block/item_access_restrictor",
+      "x": 270,
+      "y": 90
+    },
+    "blocking=false,facing=north": {
+      "model": "item_access_restrictor:block/item_access_restrictor",
+      "x": 270
+    },
+    "blocking=false,facing=south": {
+      "model": "item_access_restrictor:block/item_access_restrictor",
+      "x": 90
+    },
+    "blocking=false,facing=up": {
+      "model": "item_access_restrictor:block/item_access_restrictor",
+      "x": 180
+    },
+    "blocking=false,facing=west": {
+      "model": "item_access_restrictor:block/item_access_restrictor",
+      "x": 90,
+      "y": 90
+    },
+    "blocking=true,facing=down": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking"
+    },
+    "blocking=true,facing=east": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking",
+      "x": 270,
+      "y": 90
+    },
+    "blocking=true,facing=north": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking",
+      "x": 270
+    },
+    "blocking=true,facing=south": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking",
+      "x": 90
+    },
+    "blocking=true,facing=up": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking",
+      "x": 180
+    },
+    "blocking=true,facing=west": {
+      "model": "item_access_restrictor:block/item_access_restrictor_blocking",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

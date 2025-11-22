@@ -1,0 +1,19 @@
+{
+  "block.item_access_restrictor.item_access_restrictor": "物品存取限制器",
+  "gui.item_access_restrictor.creative_tab": "物品存取限制器",
+  "gui.item_access_restrictor.setting_enabled": "已启用",
+  "gui.item_access_restrictor.setting_disabled": "已禁用",
+  "gui.item_access_restrictor.blocking_input_if_not_empty_tooltip": "在目标不为空时阻挡输入",
+  "gui.item_access_restrictor.blocking_input_if_receiving_redstone_signal_tooltip": "在接收红石信号时阻挡输入",
+  "gui.item_access_restrictor.input_stacking_limit_tooltip": "输入堆叠限制",
+  "gui.item_access_restrictor.input_stacking_limit_disabled": "无限制",
+  "gui.item_access_restrictor.comparator_output_mode_tooltip": "比较器输出模式",
+  "gui.item_access_restrictor.comparator_output_mode_only_count_effective_items_and_slots": "仅计算可交互的物品与槽位",
+  "gui.item_access_restrictor.comparator_output_mode_same_with_facing_block": "与朝向方块相同",
+  "gui.item_access_restrictor.quantity_of_retained_items_tooltip": "保留物品数量",
+  "gui.item_access_restrictor.quantity_of_retained_items_disabled": "不保留",
+  "gui.item_access_restrictor.enable_all_slots_button": "启用全部槽位的存入和取出",
+  "gui.item_access_restrictor.disable_all_slots_button": "禁用全部槽位的存入和取出",
+  "gui.item_access_restrictor.slot_disables_tooltip": "槽位存入和取出",
+  "gui.item_access_restrictor.slot_disables_position.narrate": "行：%s 列：%s"
+}

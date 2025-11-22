@@ -1,0 +1,19 @@
+{
+  "block.item_access_restrictor.item_access_restrictor": "Item Access Restrictor",
+  "gui.item_access_restrictor.creative_tab": "Item Access Restrictor",
+  "gui.item_access_restrictor.setting_enabled": "Enabled",
+  "gui.item_access_restrictor.setting_disabled": "Disabled",
+  "gui.item_access_restrictor.blocking_input_if_not_empty_tooltip": "Blocking input if target is not empty",
+  "gui.item_access_restrictor.blocking_input_if_receiving_redstone_signal_tooltip": "Blocking input if receiving redstone signal",
+  "gui.item_access_restrictor.input_stacking_limit_tooltip": "Input Stacking Limit",
+  "gui.item_access_restrictor.input_stacking_limit_disabled": "Unlimited",
+  "gui.item_access_restrictor.comparator_output_mode_tooltip": "Comparator Output Mode",
+  "gui.item_access_restrictor.comparator_output_mode_only_count_effective_items_and_slots": "Only count effective items and slots",
+  "gui.item_access_restrictor.comparator_output_mode_same_with_facing_block": "Same with facing block",
+  "gui.item_access_restrictor.quantity_of_retained_items_tooltip": "Quantity of retained items",
+  "gui.item_access_restrictor.quantity_of_retained_items_disabled": "No retain",
+  "gui.item_access_restrictor.enable_all_slots_button": "Enable Insertion and extraction of all slots",
+  "gui.item_access_restrictor.disable_all_slots_button": "Disable Insertion and extraction of all slots",
+  "gui.item_access_restrictor.slot_disables_tooltip": "Insertion and extraction of the slot",
+  "gui.item_access_restrictor.slot_disables_position.narrate": "Row: %s Column: %s"
+}

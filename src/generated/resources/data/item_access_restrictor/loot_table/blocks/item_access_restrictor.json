@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "item_access_restrictor:item_access_restrictor"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "item_access_restrictor:blocks/item_access_restrictor"
+}
