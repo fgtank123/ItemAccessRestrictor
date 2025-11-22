@@ -434,5 +434,12 @@ public class ItemAccessRestrictorScreen extends Screen implements MenuAccess<Ite
         }
     }
 
+    @Override
+    public void onClose() {
+        if (this.minecraft != null && this.minecraft.player != null) {
+            this.minecraft.player.closeContainer();
+        }
+        super.onClose();
+    }
 
 }
