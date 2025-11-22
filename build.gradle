@@ -165,6 +165,7 @@ neoForge.ideSyncTask generateModMetadata
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
+            artifactId = 'itemaccessrestrictor'
             from components.java
         }
     }
