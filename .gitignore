@@ -24,8 +24,5 @@ runs
 run-data
 
 repo
-lib_source/appliedenergistics2-19.2.16-sources.jar
-src/generated/resources/.cache/9fb1092f32d4fcbf9e061ffd718d4ec689c6c95e
-src/generated/resources/.cache/59eb3dbb5f86130e09b3c62d89b9525ee01cf52d
-src/generated/resources/.cache/7043f247501ac7790c9afbdb22df610f7428c0f1
-src/generated/resources/.cache/785769dbf4ca77b9be698086acf6fd550b5d101a
+lib_source
+src/generated/resources/.cache
