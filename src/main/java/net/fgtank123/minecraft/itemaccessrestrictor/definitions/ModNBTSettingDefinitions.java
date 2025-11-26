@@ -33,8 +33,8 @@ public class ModNBTSettingDefinitions {
         ComparatorOutputMode.class
     );
 
-    public static final NBTSettingDefinitionEnumerable<Integer> QUANTITY_OF_RETAINED_ITEMS = NBTSettingDefinitionFactory.createIntegers(
-        "quantity_of_retained_items",
+    public static final NBTSettingDefinitionEnumerable<Integer> NUMBER_OF_ITEMS_RETAINED = NBTSettingDefinitionFactory.createIntegers(
+        "number_of_items_retained",
         ArrayUtils.addFirst(
             IntStream.rangeClosed(1, 64).boxed().toArray(Integer[]::new),
             0

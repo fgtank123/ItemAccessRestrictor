@@ -54,7 +54,7 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
     private final NBTSetting<Boolean> blockingInputIfReceivingRedstoneSignal;
     private final NBTSetting<Integer> inputStackingLimit;
     private final NBTSetting<ComparatorOutputMode> comparatorOutputMode;
-    private final NBTSetting<Integer> quantityOfRetainedItems;
+    private final NBTSetting<Integer> numberOfItemsRetained;
     private final NBTSetting<boolean[]> slotDisables;
     int lastAnalogRedstoneSignal;
 
@@ -69,7 +69,7 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
         blockingInputIfReceivingRedstoneSignal = nbtSettingsManager.register(ModNBTSettingDefinitions.BLOCKING_INPUT_IF_RECEIVING_REDSTONE_SIGNAL);
         inputStackingLimit = nbtSettingsManager.register(ModNBTSettingDefinitions.INPUT_STACKING_LIMIT);
         comparatorOutputMode = nbtSettingsManager.register(ModNBTSettingDefinitions.COMPARATOR_OUTPUT_MODE);
-        quantityOfRetainedItems = nbtSettingsManager.register(ModNBTSettingDefinitions.QUANTITY_OF_RETAINED_ITEMS);
+        numberOfItemsRetained = nbtSettingsManager.register(ModNBTSettingDefinitions.NUMBER_OF_ITEMS_RETAINED);
         slotDisables = nbtSettingsManager.register(ModNBTSettingDefinitions.SLOT_DISABLES);
         nbtSettingsManager.onValueChanged(
             (definition, newValue, oldValue) -> setChanged()
@@ -207,15 +207,15 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
 
     @Nonnull
     private ItemStack innerGetStackInSlot(int slot) {
-        int quantityOfRetainedItems = this.quantityOfRetainedItems.getValue();
+        int numberOfItemsRetained = this.numberOfItemsRetained.getValue();
         IItemHandler itemHandler = innerGetFacingBlockItemHandler();
         int realSlotIndex = getRealSlotIndex(itemHandler.getSlots(), slot);
         ItemStack stackInSlot = itemHandler.getStackInSlot(realSlotIndex);
-        if (stackInSlot.getCount() <= quantityOfRetainedItems) {
+        if (stackInSlot.getCount() <= numberOfItemsRetained) {
             return ItemStack.EMPTY;
         } else {
             ItemStack copy = stackInSlot.copy();
-            copy.split(quantityOfRetainedItems);
+            copy.split(numberOfItemsRetained);
             return copy;
         }
     }
@@ -384,13 +384,13 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
                     "extractItem",
                     () -> {
                         IItemHandler itemHandler = innerGetFacingBlockItemHandler();
-                        int quantityOfRetainedItems = ItemAccessRestrictorBlockEntity.this.quantityOfRetainedItems.getValue();
+                        int numberOfItemsRetained = ItemAccessRestrictorBlockEntity.this.numberOfItemsRetained.getValue();
                         int realSlotIndex = getRealSlotIndex(itemHandler.getSlots(), slot);
                         int count = itemHandler.getStackInSlot(realSlotIndex).getCount();
-                        if (count <= quantityOfRetainedItems) {
+                        if (count <= numberOfItemsRetained) {
                             return ItemStack.EMPTY;
                         } else {
-                            int newAmount = count - quantityOfRetainedItems;
+                            int newAmount = count - numberOfItemsRetained;
                             return itemHandler.extractItem(realSlotIndex, Math.min(newAmount, amount), simulate);
                         }
                     },
@@ -405,7 +405,7 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
                     () -> {
                         IItemHandler itemHandler = innerGetFacingBlockItemHandler();
                         int inputStackingLimit = ItemAccessRestrictorBlockEntity.this.inputStackingLimit.getValue();
-                        int quantityOfRetainedItems = ItemAccessRestrictorBlockEntity.this.quantityOfRetainedItems.getValue();
+                        int numberOfItemsRetained = ItemAccessRestrictorBlockEntity.this.numberOfItemsRetained.getValue();
                         int realSlotIndex = getRealSlotIndex(itemHandler.getSlots(), slot);
                         ItemStack stackInSlot = itemHandler.getStackInSlot(realSlotIndex);
                         int slotLimit = Math.min(itemHandler.getSlotLimit(realSlotIndex), stackInSlot.getMaxStackSize());
@@ -413,10 +413,10 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
                             slotLimit = inputStackingLimit;
                         }
                         int itemCount = stackInSlot.getCount();
-                        if (itemCount <= quantityOfRetainedItems) {
+                        if (itemCount <= numberOfItemsRetained) {
                             return Math.max(slotLimit - itemCount, 0);
                         } else {
-                            return Math.max(slotLimit - quantityOfRetainedItems, 0);
+                            return Math.max(slotLimit - numberOfItemsRetained, 0);
                         }
                     },
                     () -> INNER_EMPTY_ITEM_HANDLER.getSlotLimit(slot)
@@ -535,8 +535,8 @@ public class ItemAccessRestrictorBlockEntity extends BlockEntity implements Menu
         return comparatorOutputMode;
     }
 
-    public NBTSetting<Integer> getQuantityOfRetainedItems() {
-        return quantityOfRetainedItems;
+    public NBTSetting<Integer> getNumberOfItemsRetained() {
+        return numberOfItemsRetained;
     }
 
     public NBTSetting<boolean[]> getSlotDisables() {

@@ -29,7 +29,7 @@ public class ItemAccessRestrictorMenu extends AbstractContainerMenu {
     private final ValueRef<Boolean> blockingInputIfReceivingRedstoneSignal;
     private final ValueRef<Integer> inputStackingLimit;
     private final ValueRef<ComparatorOutputMode> comparatorOutputMode;
-    private final ValueRef<Integer> quantityOfRetainedItems;
+    private final ValueRef<Integer> numberOfItemsRetained;
     private final ValueRef<boolean[]> slotDisables;
 
     private final ValueRef<List<ItemStack>> facingBlockItemStacks;
@@ -56,9 +56,9 @@ public class ItemAccessRestrictorMenu extends AbstractContainerMenu {
             host.getComparatorOutputMode()::getValue,
             host.getComparatorOutputMode()::setValue
         );
-        quantityOfRetainedItems = dataSynchronizationManager.register(
-            host.getQuantityOfRetainedItems()::getValue,
-            host.getQuantityOfRetainedItems()::setValue
+        numberOfItemsRetained = dataSynchronizationManager.register(
+            host.getNumberOfItemsRetained()::getValue,
+            host.getNumberOfItemsRetained()::setValue
         );
         slotDisables = dataSynchronizationManager.register(
             host.getSlotDisables()::getValue,
@@ -126,8 +126,8 @@ public class ItemAccessRestrictorMenu extends AbstractContainerMenu {
         return comparatorOutputMode;
     }
 
-    public ValueRef<Integer> getQuantityOfRetainedItems() {
-        return quantityOfRetainedItems;
+    public ValueRef<Integer> getNumberOfItemsRetained() {
+        return numberOfItemsRetained;
     }
 
     public ValueRef<boolean[]> getSlotDisables() {

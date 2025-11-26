@@ -18,8 +18,8 @@ public enum ModTextureEnum implements ModTexture {
         new Rectangle(16, 16, 16, 16),
         new Rectangle(8, 0, 7, 6)
     ),
-    QUANTITY_OF_RETAINED_ITEMS_UNSET(SETTING_STATES, new Rectangle(32, 16, 16, 16)),
-    QUANTITY_OF_RETAINED_ITEMS_SET(
+    NUMBER_OF_ITEMS_RETAINED_UNSET(SETTING_STATES, new Rectangle(32, 16, 16, 16)),
+    NUMBER_OF_ITEMS_RETAINED_SET(
         SETTING_STATES,
         new Rectangle(48, 16, 16, 16),
         new Rectangle(8, 8, 7, 6)

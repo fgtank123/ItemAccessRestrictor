@@ -1,13 +1,13 @@
 package net.fgtank123.minecraft.itemaccessrestrictor.core.gui;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import net.fgtank123.minecraft.guidatasync.ValueRef;
 import net.fgtank123.minecraft.itemaccessrestrictor.core.ItemAccessRestrictorMenu;
 import net.fgtank123.minecraft.itemaccessrestrictor.core.gui.widgets.SettingSlider;
 import net.fgtank123.minecraft.itemaccessrestrictor.core.gui.widgets.SlotDisableSettingPanel;
 import net.fgtank123.minecraft.itemaccessrestrictor.core.gui.widgets.TextureButton;
 import net.fgtank123.minecraft.itemaccessrestrictor.definitions.ComparatorOutputMode;
 import net.fgtank123.minecraft.itemaccessrestrictor.definitions.ModNBTSettingDefinitions;
-import net.fgtank123.minecraft.guidatasync.ValueRef;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.layouts.LayoutElement;
@@ -223,45 +223,45 @@ public class ItemAccessRestrictorScreen extends Screen implements MenuAccess<Ite
             });
     }
 
-    private TextureButton quantityOfRetainedItemsButton() {
+    private TextureButton numberOfItemsRetainedButton() {
         return TextureButton.createButton(
             () -> {
-                int quantityOfRetainedItems = menu.getQuantityOfRetainedItems().get();
-                if (quantityOfRetainedItems == 0) {
-                    return QUANTITY_OF_RETAINED_ITEMS_UNSET;
+                int numberOfItemsRetained = menu.getNumberOfItemsRetained().get();
+                if (numberOfItemsRetained == 0) {
+                    return NUMBER_OF_ITEMS_RETAINED_UNSET;
                 } else {
-                    return QUANTITY_OF_RETAINED_ITEMS_SET.withNumber(quantityOfRetainedItems);
+                    return NUMBER_OF_ITEMS_RETAINED_SET.withNumber(numberOfItemsRetained);
                 }
             },
             () -> {
-                ValueRef<Integer> quantityOfRetainedItemsRef = menu.getQuantityOfRetainedItems();
-                int quantityOfRetainedItems = quantityOfRetainedItemsRef.get();
-                if (quantityOfRetainedItems == 0) {
-                    quantityOfRetainedItemsRef.set(1);
+                ValueRef<Integer> numberOfItemsRetainedRef = menu.getNumberOfItemsRetained();
+                int numberOfItemsRetained = numberOfItemsRetainedRef.get();
+                if (numberOfItemsRetained == 0) {
+                    numberOfItemsRetainedRef.set(1);
                 } else {
-                    quantityOfRetainedItemsRef.set(0);
+                    numberOfItemsRetainedRef.set(0);
                 }
             },
-            () -> Component.translatable("gui.item_access_restrictor.quantity_of_retained_items_tooltip").getString(),
+            () -> Component.translatable("gui.item_access_restrictor.number_of_items_retained_tooltip").getString(),
             () -> {
-                int quantityOfRetainedItems = menu.getQuantityOfRetainedItems().get();
-                if (quantityOfRetainedItems == 0) {
-                    return Component.translatable("gui.item_access_restrictor.quantity_of_retained_items_disabled").getString();
+                int numberOfItemsRetained = menu.getNumberOfItemsRetained().get();
+                if (numberOfItemsRetained == 0) {
+                    return Component.translatable("gui.item_access_restrictor.number_of_items_retained_disabled").getString();
                 } else {
-                    return quantityOfRetainedItems + "";
+                    return numberOfItemsRetained + "";
                 }
             }, () -> {
-                int quantityOfRetainedItems = menu.getQuantityOfRetainedItems().get();
-                if (quantityOfRetainedItems == 0) {
+                int numberOfItemsRetained = menu.getNumberOfItemsRetained().get();
+                if (numberOfItemsRetained == 0) {
                     return "1";
                 } else {
-                    return Component.translatable("gui.item_access_restrictor.quantity_of_retained_items_disabled").getString();
+                    return Component.translatable("gui.item_access_restrictor.number_of_items_retained_disabled").getString();
                 }
             });
     }
 
-    private SettingSlider quantityOfRetainedItemsSlider() {
-        Set<Integer> values = ModNBTSettingDefinitions.QUANTITY_OF_RETAINED_ITEMS.getValues();
+    private SettingSlider numberOfItemsRetainedSlider() {
+        Set<Integer> values = ModNBTSettingDefinitions.NUMBER_OF_ITEMS_RETAINED.getValues();
         int min = values.stream().filter(
             v -> v > 0
         ).min(Integer::compare).orElseThrow();
@@ -270,12 +270,12 @@ public class ItemAccessRestrictorScreen extends Screen implements MenuAccess<Ite
         ).max(Integer::compare).orElseThrow();
         return new SettingSlider(
             150,
-            Component.translatable("gui.item_access_restrictor.quantity_of_retained_items_tooltip"),
+            Component.translatable("gui.item_access_restrictor.number_of_items_retained_tooltip"),
             min,
             max,
-            () -> menu.getQuantityOfRetainedItems().get(),
-            v -> menu.getQuantityOfRetainedItems().set(v),
-            () -> !Objects.equals(menu.getQuantityOfRetainedItems().get(), values.iterator().next())
+            () -> menu.getNumberOfItemsRetained().get(),
+            v -> menu.getNumberOfItemsRetained().set(v),
+            () -> !Objects.equals(menu.getNumberOfItemsRetained().get(), values.iterator().next())
         );
     }
 
@@ -341,8 +341,8 @@ public class ItemAccessRestrictorScreen extends Screen implements MenuAccess<Ite
         );
         LinearLayout thirdRow = horizontal(
             columnSpacing,
-            addRenderableWidget(quantityOfRetainedItemsButton()),
-            addRenderableWidget(quantityOfRetainedItemsSlider())
+            addRenderableWidget(numberOfItemsRetainedButton()),
+            addRenderableWidget(numberOfItemsRetainedSlider())
         );
 
         if (slotDisableSettingPanel.getSlotAreaInfo().allowSlots() > 0) {
