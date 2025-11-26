@@ -12,8 +12,8 @@
   "gui.item_access_restrictor.comparator_output_mode_same_with_facing_block": "Same with facing block",
   "gui.item_access_restrictor.quantity_of_retained_items_tooltip": "Quantity of retained items",
   "gui.item_access_restrictor.quantity_of_retained_items_disabled": "No retain",
-  "gui.item_access_restrictor.enable_all_slots_button": "Enable Insertion and extraction of all slots",
-  "gui.item_access_restrictor.disable_all_slots_button": "Disable Insertion and extraction of all slots",
+  "gui.item_access_restrictor.enable_all_slots_button": "Enable insertion and extraction of all slots",
+  "gui.item_access_restrictor.disable_all_slots_button": "Disable insertion and extraction of all slots",
   "gui.item_access_restrictor.slot_disables_tooltip": "Insertion and extraction of the slot",
   "gui.item_access_restrictor.slot_disables_position.narrate": "Row: %s Column: %s"
 }
