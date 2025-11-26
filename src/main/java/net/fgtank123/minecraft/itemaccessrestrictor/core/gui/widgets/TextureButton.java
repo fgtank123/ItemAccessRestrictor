@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class TextureButton extends Button {
@@ -113,16 +114,29 @@ public class TextureButton extends Button {
             getX() + (bgModTexture.getWidth() - fgTexture.getWidth()) / 2,
             getY() + (bgModTexture.getHeight() - fgTexture.getHeight()) / 2
         );
-        String value = this.valueSupplier.get();
-        MutableComponent titleComponent = Component.literal(this.titleSupplier.get()).setStyle(Style.EMPTY.applyFormat(ChatFormatting.WHITE));
-        setTooltip(Tooltip.create(
-            StringUtils.isBlank(value) ? titleComponent : CommonComponents.joinLines(
-                titleComponent,
-                Component.literal(value).setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY))
-            ),
-            null
-        ));
+        updateTooltip();
     }
+
+    private String preValue;
+    private String preTitle;
+
+    private void updateTooltip() {
+        String title = this.titleSupplier.get();
+        String value = this.valueSupplier.get();
+        if (!Objects.equals(this.preTitle, title) || !Objects.equals(this.preValue, value)) {
+            this.preTitle = title;
+            this.preValue = value;
+            MutableComponent titleComponent = Component.literal(title).setStyle(Style.EMPTY.applyFormat(ChatFormatting.WHITE));
+            setTooltip(Tooltip.create(
+                StringUtils.isBlank(value) ? titleComponent : CommonComponents.joinLines(
+                    titleComponent,
+                    Component.literal(value).setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY))
+                ),
+                null
+            ));
+        }
+    }
+
 
     public static TextureButton createButton(
         Supplier<ModTexture> fgTextureSupplier,

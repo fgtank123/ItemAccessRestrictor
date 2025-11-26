@@ -6,8 +6,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.components.WidgetTooltipHolder;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -16,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -30,6 +34,8 @@ public class SlotDisableSettingPanel extends AbstractWidget {
     private int preSlots;
 
     private SlotPosition hoverSlotPosition;
+
+    private final WidgetTooltipHolder customTooltip = new WidgetTooltipHolder();
 
     public SlotDisableSettingPanel(
         Supplier<List<ItemStack>> itemStacksGetter,
@@ -118,16 +124,34 @@ public class SlotDisableSettingPanel extends AbstractWidget {
                 0
             );
             int slotIndex = toSlotIndex(rowIndex, columnIndex);
-            setTooltip(Tooltip.create(
+            updateTooltip(slotDisabled(slotDisables, slotIndex));
+
+            Screen screen = Minecraft.getInstance().screen;
+            Tooltip tooltip = this.customTooltip.get();
+            if (screen != null && tooltip != null) {
+                screen.setTooltipForNextRenderPass(
+                    tooltip,
+                    DefaultTooltipPositioner.INSTANCE,
+                    isFocused()
+                );
+            }
+        }
+
+    }
+
+    private Boolean preSlotDisabled;
+
+    private void updateTooltip(boolean slotDisabled) {
+        if (!Objects.equals(preSlotDisabled, slotDisabled)) {
+            preSlotDisabled = slotDisabled;
+            this.customTooltip.set(Tooltip.create(
                 CommonComponents.joinLines(
                     Component.translatable("gui.item_access_restrictor.slot_disables_tooltip").setStyle(Style.EMPTY.applyFormat(ChatFormatting.WHITE)),
-                    slotDisabled(slotDisables, slotIndex) ?
+                    slotDisabled ?
                         Component.translatable("gui.item_access_restrictor.setting_disabled").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)) :
                         Component.translatable("gui.item_access_restrictor.setting_enabled").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY))
                 )
             ));
-        } else {
-            setTooltip(null);
         }
     }
 
