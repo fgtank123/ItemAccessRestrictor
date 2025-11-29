@@ -1,4 +1,4 @@
-# ItemAccessRestrictor | [物品存取限制器](./README.md)
+# Item Access Restrictor | [物品存取限制器](./README.md)
 
 <img src="./src/main/resources/logo.png" width = "128" height = "128" alt="ItemAccessRestrictor"/>
 
